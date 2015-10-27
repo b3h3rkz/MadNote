@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block content %}
+    {% for note in object_list %}
+      <ul class="collection with-header">
+        <li class="collection-header"><h4>Notes</h4></li>
+        <li class="collection-item">{{ note.title }}<div><a href="#"class="secondary-content"><i class="material-icons">send</i></a></div></li>
+
+        </ul>
+    {% endfor %}
+{% endblock %}
