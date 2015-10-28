@@ -3,26 +3,23 @@ from django.template import loader
 from django.views import generic
 from madNotes.models import Note, Tags
 from madNotes import models
-from .forms import NoteForm
+from .forms import NoteForm, TagForm
 from django.shortcuts import render
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteView
 
 
 
 def index(request):
-
     return render(request,"home.html")
 
 class NoteCreate(CreateView):
     model = Note
-
-    fields = ["title", "note", "tags"]
+    form_class = NoteForm
     template_name = "add_note.html"
 
 
-
-
 """display notes on note homepage"""
+
 
 class NoteIndex(generic.ListView):
     context_object_name = "notes"
@@ -32,6 +29,7 @@ class NoteIndex(generic.ListView):
 
 
 """displaying the details of a selected note"""
+
 
 class NoteDetail(generic.DetailView):
     model = Note

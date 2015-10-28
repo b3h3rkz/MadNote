@@ -2,15 +2,11 @@
 {% load django_markdown  %}
 {% load staticfiles %}
 {% block content %}
-    <div class="col s3">
-      </div>
+
       <div class="row">
-
-
+       <div class="col s12 m4 l3">
        <h4><a href="{% url "entry_detail" slug=note.slug %}">{{ note.title }}</a></h4>
-          <p class="card-content">{{ note.note }}</p>
-      </div>
-
-
+          <p class="card-content">{{ note.note | capfirst}}</p>
+          </div>
     </div>
  {% endblock %}
