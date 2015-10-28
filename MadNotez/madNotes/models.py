@@ -5,18 +5,20 @@ from registration.signals import user_registered
 from django_markdown.models import MarkdownField
 
 
-class Descrition(models.Model):
-    description = models.SlugField(max_length=30)
+class Tags(models.Model):
+    label = models.CharField(max_length=30, default="", unique=False)
 
     """method for describing each entry"""
     def __str__(self):
-        return self.description
+        return self.label
+
 
 class Note(models.Model):
     title = models.CharField(max_length=50, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     note = models.TextField()
+    tags = models.ManyToManyField(Tags, related_name="notes")
 
     note = MarkdownField()
 
@@ -24,7 +26,8 @@ class Note(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("note_detail", kwargs={"description": self.description})
+        return reverse("entry_detail", kwargs={"note": self.id})
+
 
     class Meta:
         verbose_name = "Mad Note"

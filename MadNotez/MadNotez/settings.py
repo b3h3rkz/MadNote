@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'madNotes',
     'django_markdown',
 
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,9 +50,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'material.frontend.middleware.SmoothNavigationMiddleware',
-)
+ )
 
+
+LOGIN_REDIRECT_URL = "/notes/"
 ROOT_URLCONF = 'MadNotez.urls'
 
 WSGI_APPLICATION = 'MadNotez.wsgi.application'

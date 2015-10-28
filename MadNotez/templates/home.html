@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
+{% load django_markdown  %}
 {% load staticfiles %}
-{% load i18n %}
 {% block content %}
-    {% for note in object_list %}
-      <ul class="collection with-header">
-        <li class="collection-header"><h4>Notes</h4></li>
-        <li class="collection-item">{{ note.title }}<div><a href="#"class="secondary-content"><i class="material-icons">send</i></a></div></li>
+  <ul>
+  {% for obj in notes %}
+  <h3><a href="{% url 'entry_detail' %}"> {{ obj.title }}</a></h3>
+  <li>{{ obj.note}}</li>
+  {% endfor %}
+  </ul>
+ {% endblock %}
+{% block form %}
+<form method='POST' action=''>{% csrf_token %}
+            {{ form.as_ul }}
+            <input type='submit' value="submit">
+        </form>
 
-        </ul>
-    {% endfor %}
 {% endblock %}

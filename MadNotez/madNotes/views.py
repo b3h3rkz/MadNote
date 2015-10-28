@@ -1,31 +1,41 @@
-from django.http import request
+from django.http import HttpResponse
+from django.template import loader
 from django.views import generic
-from django.shortcuts import render, render_to_response, RequestContext
 from madNotes.models import Note, Tags
 from madNotes import models
 from .forms import NoteForm
-from django.views.generic.edit import FormView
-"""
-class NoteView(FormView):
-    template_name = "home.html"
-    form_class = NoteForm
-    success_url = '/'
-
-    def home(request):
-        notes = Note.objects.all()
-        form = NoteForm(request.POST or None)
-        if form.is_valid():
-            save_it = form.save(commit=False)
-            save_it.save(notes)
+from django.shortcuts import render
+from django.views.generic.edit import CreateView, FormView
 
 
-        return render(request, 'home.html')
 
-"""
+def index(request):
+
+    return render(request,"main.html")
+
+class NoteCreate(CreateView):
+    model = Note
+
+    fields = ["title", "note", "tags"]
+    template_name = "add_note.html"
+
+
+def home(request):
+    notes = Note.objects
+    template = loader.get_template('home.html')
+    form = NoteForm(request.POST or None)
+    if form.is_valid():
+        save_it = form.save(commit=False)
+        save_it.save()
+
+    context = {'notes': notes, 'form': form}
+    return render(request, template, context)
+    #return render_to_response("note.html", notes)
 
 """display notes on note homepage"""
+
 class NoteIndex(generic.ListView):
-    model=Note
+    context_object_name = "notes"
     queryset = models.Note.objects.all()
     template_name = "home.html"
     paginate_by = 5
@@ -33,5 +43,5 @@ class NoteIndex(generic.ListView):
 
 """displaying the details of a selected note"""
 class NoteDetail(generic.DetailView):
-    model = models.Note
-    template_name =  "details.html"
+    model = Note
+    template_name =  "post.html"
