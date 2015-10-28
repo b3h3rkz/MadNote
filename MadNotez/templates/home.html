@@ -9,7 +9,7 @@
       <div class="row">
 
       <div class=" col s3 card small z-depth-3 ">
-       <aside><a href="">{{ note.title }}</a></aside>
+       <aside><a href="{% url "entry_detail" slug=note.slug %}">{{ note.title }}</a></aside>
           <p class="card-content">{{ note.note | truncatewords:100 }}</p>
       </div>
 

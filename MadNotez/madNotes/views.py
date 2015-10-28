@@ -34,4 +34,4 @@ class NoteIndex(generic.ListView):
 """displaying the details of a selected note"""
 class NoteDetail(generic.DetailView):
     model = Note
-    template_name =  "post.html"
+    template_name =  "details.html"

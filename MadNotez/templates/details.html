@@ -4,11 +4,10 @@
 
 {% block note_entries %}
  <div class="post">
-
-     <h2><a href="{% url "entry_detail" pk=obj.title %}">{{ obj.title }}</a></h2>
+     <h2><a href="{% url "entry_detail" slug=note.slug %}">{{ note.title }}</a></h2>
      <p class="meta">{{ object.created }}</p>
-  </div>
+     {{ note.note| markdown }}
+ </div>
  {% endblock %}
-
 
 
