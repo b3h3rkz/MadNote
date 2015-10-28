@@ -11,7 +11,7 @@ from django.views.generic.edit import CreateView, FormView
 
 def index(request):
 
-    return render(request,"main.html")
+    return render(request,"home.html")
 
 class NoteCreate(CreateView):
     model = Note
@@ -20,17 +20,7 @@ class NoteCreate(CreateView):
     template_name = "add_note.html"
 
 
-def home(request):
-    notes = Note.objects
-    template = loader.get_template('home.html')
-    form = NoteForm(request.POST or None)
-    if form.is_valid():
-        save_it = form.save(commit=False)
-        save_it.save()
 
-    context = {'notes': notes, 'form': form}
-    return render(request, template, context)
-    #return render_to_response("note.html", notes)
 
 """display notes on note homepage"""
 

@@ -19,6 +19,7 @@ class Note(models.Model):
     modified = models.DateTimeField(auto_now=True)
     note = models.TextField()
     tags = models.ManyToManyField(Tags, related_name="notes")
+    slug = models.SlugField(unique=True, default="")
 
     note = MarkdownField()
 
@@ -26,14 +27,12 @@ class Note(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("entry_detail", kwargs={"note": self.id})
-
+        return reverse("entry_detail", kwargs={"slug": self.slug})
 
     class Meta:
         verbose_name = "Mad Note"
         verbose_name_plural = "Note Entries"
         ordering = ["-created"]
-
 
 
 class ExUserProfile(models.Model):

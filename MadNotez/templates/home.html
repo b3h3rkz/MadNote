@@ -2,17 +2,18 @@
 {% load django_markdown  %}
 {% load staticfiles %}
 {% block content %}
-  <ul>
-  {% for obj in notes %}
-  <h3><a href="{% url 'entry_detail' %}"> {{ obj.title }}</a></h3>
-  <li>{{ obj.note}}</li>
-  {% endfor %}
-  </ul>
- {% endblock %}
-{% block form %}
-<form method='POST' action=''>{% csrf_token %}
-            {{ form.as_ul }}
-            <input type='submit' value="submit">
-        </form>
+    <div class="col s3">
+    nv
+      </div>
+{% for note in notes %}
+      <div class="row">
 
-{% endblock %}
+      <div class=" col s3 card small z-depth-3 ">
+       <aside><a href="">{{ note.title }}</a></aside>
+          <p class="card-content">{{ note.note | truncatewords:100 }}</p>
+      </div>
+
+
+    </div>
+    {% endfor %}
+ {% endblock %}
