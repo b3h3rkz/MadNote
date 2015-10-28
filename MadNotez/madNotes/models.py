@@ -6,7 +6,7 @@ from django_markdown.models import MarkdownField
 
 
 class Tags(models.Model):
-    slug = models.SlugField(max_length=30, default="", unique=True)
+    slug = models.SlugField(max_length=30,  unique=True)
 
     """method for describing each entry"""
     def __str__(self):
@@ -19,7 +19,7 @@ class Note(models.Model):
     modified = models.DateTimeField(auto_now=True)
     note = models.TextField()
     tags = models.ManyToManyField(Tags, related_name="notes")
-    slug = models.SlugField(unique=True, default="")
+    slug = models.SlugField(unique=True)
 
     note = MarkdownField()
 

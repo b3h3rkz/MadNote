@@ -11,7 +11,7 @@ from django.shortcuts import render
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ('title', 'slug','note')
+        fields = ('title','note', 'slug' )
 
 
 class TagForm(forms.ModelForm):

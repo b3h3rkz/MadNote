@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
+{% load django_markdown %}
 {% block content %}
 <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}

@@ -16,6 +16,7 @@ class NoteCreate(CreateView):
     model = Note
     form_class = NoteForm
     template_name = "add_note.html"
+    success_url = "/notes"
 
 
 """display notes on note homepage"""
