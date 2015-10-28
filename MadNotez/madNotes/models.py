@@ -6,11 +6,11 @@ from django_markdown.models import MarkdownField
 
 
 class Tags(models.Model):
-    label = models.CharField(max_length=30, default="", unique=False)
+    slug = models.SlugField(max_length=30, default="", unique=True)
 
     """method for describing each entry"""
     def __str__(self):
-        return self.label
+        return self.slug
 
 
 class Note(models.Model):

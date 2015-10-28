@@ -17,7 +17,7 @@ class NoteForm(forms.ModelForm):
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tags
-        fields = ('label',)
+        fields = ('slug',)
 
 
 class ExRegistrationForm(RegistrationForm):
