@@ -12,6 +12,19 @@ from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteVi
 def index(request):
     return render(request,"home.html")
 
+
+
+"""display notes on note homepage"""
+
+class NoteIndex(generic.ListView):
+    context_object_name = "notes"
+    queryset = models.Note.objects.all()
+    template_name = "home.html"
+    paginate_by = 5
+
+
+"""create new note"""
+
 class NoteCreate(CreateView):
     model = Note
     form_class = NoteForm
@@ -19,14 +32,13 @@ class NoteCreate(CreateView):
     success_url = "/notes"
 
 
-"""display notes on note homepage"""
+
+"""UPDATE NOTES"""
+
+class NoteUpdateView(UpdateView):
+    model = Note
 
 
-class NoteIndex(generic.ListView):
-    context_object_name = "notes"
-    queryset = models.Note.objects.all()
-    template_name = "home.html"
-    paginate_by = 5
 
 
 """displaying the details of a selected note"""

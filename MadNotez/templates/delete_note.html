@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Note{% endblock %}
+
+{% block content %}
+<h1>Delete NOte</h1>
+
+<h2>Really delete {{ }} from {{ }}?</h2>
+
+<p>It will be permanently lost</p>
+
+<form method="post">{% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+
+{% endblock %}

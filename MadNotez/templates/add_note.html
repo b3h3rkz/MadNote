@@ -4,7 +4,7 @@
 {% load django_markdown %}
 {% block content %}
 <form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_ul | markdown }}
     <input type="submit" value="Create" />
 </form>
 {% endblock %}
