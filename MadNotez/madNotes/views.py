@@ -1,16 +1,24 @@
 from django.http import HttpResponse
 from django.template import loader
+from rest_framework import viewsets
 from django.views import generic
 from madNotes.models import Note, Tags
 from madNotes import models
 from .forms import NoteForm, TagForm
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteView
+from .serializers import NoteModelSerializer
 
 
 
 def index(request):
     return render(request,"home.html")
+
+
+class NoteViewset(viewsets.ModelViewSet):
+    queryset = Note.objects.all()
+    serializer_class = NoteModelSerializer
+
 
 
 
