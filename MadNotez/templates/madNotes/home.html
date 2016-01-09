@@ -6,8 +6,9 @@
 {% for note in notes %}
       <div class="row">
 
-      <div class=" col s12 card-panel  z-depth-3 ">
-       <aside ><a class="waves-ripple green-text" href="{% url "entry_detail" slug=note.slug %} " target="_blank">{{ note.title }}</a></aside>
+      
+<div class=" col s4 card small  z-depth-3 yellow " style="display: inline-block">
+       <aside ><a class="waves-ripple " href=" " target="_blank">{{ note.title | first }}</a></aside>
           <p class="card-content">{{ note.note | truncatewords:100 }}</p>
       </div>
 
