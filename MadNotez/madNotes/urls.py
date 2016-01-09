@@ -1,7 +1,11 @@
 from django.conf.urls import patterns, url
 from . import views
 from madNotes.views import  NoteCreate, NoteIndex, NoteUpdateView
+from rest_framework import routers
+from . import views
 
+router = routers.DefaultRouter()
+router.register(r'notes', views.NoteViewset)
 
 urlpatterns = patterns(
     '',
@@ -11,3 +15,5 @@ urlpatterns = patterns(
     url(r'^(?P<slug>[-\w]+)/update$', NoteUpdateView.as_view(), name='recipe-update'),
 
  )
+
+
