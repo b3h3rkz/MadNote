@@ -14,11 +14,13 @@ from .serializers import NoteModelSerializer
 def index(request):
     return render(request,"home.html")
 
+"""
+   endpoint that returns all notes
+"""
 
 class NoteViewset(viewsets.ModelViewSet):
     queryset = Note.objects.all()
     serializer_class = NoteModelSerializer
-
 
 
 
